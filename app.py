@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from transformers import pipeline
 
@@ -12,5 +13,5 @@ def generate():
     return jsonify({"itinerary": result[0]["generated_text"]})
 
 if __name__ == "__main__":
-    app.run()
-
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
